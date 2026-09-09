@@ -12,7 +12,7 @@ css/style.css               Feuille de style (design system, palette, responsive
 js/main.js                  Logique interactive (menu, animations, simulateur, formulaire)
 assets/favicon.svg          Icône de l'onglet
 assets/patterns/            Motifs décoratifs zellige (SVG, répétés en arrière-plan)
-assets/illustrations/       Illustrations SVG (arches, riad, villa, propriétaires, voyageurs...)
+assets/illustrations/       Arche décorative SVG (hero)
 assets/photos/              Photographies FH Signature (Marrakech, Casablanca), en .jpg + .webp
 ```
 
@@ -25,12 +25,11 @@ n'importe quel hébergement statique (Netlify, Vercel, GitHub Pages, OVH, o2swit
    codé en HTML/CSS (`.logo` dans `index.html`), en attendant le fichier logo officiel de FH Signature.
    Remplacez-le par le vrai logo (fichier image dans `assets/`, ex. `assets/logo.png`, à intégrer
    dans les balises `.logo`).
-2. **Photos** — le hero, la section « Pourquoi nous confier votre bien » et les deux cartes
-   Casablanca/Marrakech utilisent désormais de vraies photographies FH Signature
-   (`assets/photos/`). La gestion locative, les propriétaires et les voyageurs utilisent encore
-   des illustrations SVG sur-mesure (`assets/illustrations/`) faute de photo dédiée : remplacez-les
-   par de vraies photos quand elles seront disponibles, en suivant le même schéma `<picture>`
-   (`.jpg` + `.webp`) que les photos déjà en place.
+2. **Photos** — toutes les sections illustrées (hero, gestion locative, pourquoi nous confier
+   votre bien, destinations, propriétaires, voyageurs, engagement) utilisent désormais de vraies
+   photographies FH Signature (`assets/photos/`), servies en `.webp` avec repli `.jpg` via
+   `<picture>`. Pour ajouter ou remplacer une photo, suivez le même schéma (redimensionner à la
+   largeur indiquée dans le `width`/`height` de la balise `<img>`, exporter en `.jpg` + `.webp`).
 3. **Coordonnées** — dans `js/main.js`, bloc `CONTACT` en haut du fichier :
    - `email` : adresse email officielle
    - `whatsappNumber` : numéro WhatsApp Business (format international sans « + »)

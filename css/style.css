@@ -455,10 +455,10 @@ section{ position: relative; }
   overflow: hidden;
   aspect-ratio: 4/5;
   background: linear-gradient(160deg, var(--c-sand), var(--c-terracotta));
-  display: flex; align-items: center; justify-content: center;
-  padding: 20%;
+  box-shadow: var(--shadow-card);
 }
-.management-visual img{ width: 100%; }
+.management-visual picture, .management-visual img{ width: 100%; height: 100%; }
+.management-visual img{ object-fit: cover; }
 .management-list{
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -667,13 +667,16 @@ section{ position: relative; }
   align-items: center;
 }
 .split-visual{
+  position: relative;
   border-radius: var(--radius-l);
+  overflow: hidden;
   aspect-ratio: 4/3;
   background: linear-gradient(150deg, var(--c-gold-light), var(--c-sand));
+  box-shadow: var(--shadow-card);
   display: flex; align-items: center; justify-content: center;
-  padding: 14%;
 }
-.split-visual img{ width: 100%; }
+.split-visual picture, .split-visual img{ width: 100%; height: 100%; }
+.split-visual img{ object-fit: cover; }
 .split-text h2{ font-size: clamp(1.7rem, 2.8vw, 2.3rem); }
 .split-text > p{ font-size: 1.05rem; color: var(--c-text-soft); margin-bottom: 28px; }
 .check-list{ margin-bottom: 32px; }
@@ -683,7 +686,16 @@ section{ position: relative; }
 .travelers .split-visual{ order: 2; }
 
 /* ---------- Engagement ---------- */
-.engagement{ padding: 110px 0; background: var(--c-cream-soft); text-align: center; }
+.engagement{ padding: 110px 0; background: var(--c-cream-soft); text-align: center; overflow: hidden; }
+.engagement-scrim{
+  background: linear-gradient(180deg, rgba(245,237,225,.94) 0%, rgba(245,237,225,.9) 55%, rgba(234,224,205,.95) 100%);
+}
+.engagement .container{ position: relative; z-index: 1; }
+.engagement-card{
+  background: rgba(255,255,255,.5);
+  border-radius: var(--radius-m);
+  backdrop-filter: blur(2px);
+}
 .engagement-grid{
   display: grid;
   grid-template-columns: repeat(4, 1fr);
