@@ -12,7 +12,8 @@ css/style.css               Feuille de style (design system, palette, responsive
 js/main.js                  Logique interactive (menu, animations, simulateur, formulaire)
 assets/favicon.svg          Icône de l'onglet
 assets/patterns/            Motifs décoratifs zellige (SVG, répétés en arrière-plan)
-assets/illustrations/       Illustrations SVG (arches, riad, villa, Casablanca, Marrakech...)
+assets/illustrations/       Illustrations SVG (arches, riad, villa, propriétaires, voyageurs...)
+assets/photos/              Photographies FH Signature (Marrakech, Casablanca), en .jpg + .webp
 ```
 
 Aucune dépendance ni build : le site s'ouvre directement dans un navigateur ou se déploie sur
@@ -20,17 +21,16 @@ n'importe quel hébergement statique (Netlify, Vercel, GitHub Pages, OVH, o2swit
 
 ## Éléments à personnaliser avant mise en ligne
 
-Certains éléments ont été créés comme **placeholders** faute d'accès réseau lors du
-développement (voir note ci-dessous) et doivent être remplacés par les vrais éléments FH Signature :
-
 1. **Logo** — le header/footer utilisent actuellement un monogramme typographique « FH · Signature »
-   codé en HTML/CSS (`.logo` dans `index.html`). Remplacez-le par le vrai logo fourni par FH Signature
-   (fichier image dans `assets/`, ex. `assets/logo.png`, à intégrer dans les balises `.logo`).
-2. **Photos** — les visuels (hero, destinations, gestion locative, propriétaires, voyageurs) sont
-   actuellement des illustrations SVG dessinées sur-mesure dans la palette de marque (zellige,
-   arches, palmiers), car l'environnement de développement n'avait pas accès aux banques d'images
-   en ligne. Remplacez les `<img src="assets/illustrations/...">` par de vraies photographies
-   professionnelles (Marrakech, Casablanca, riads, villas, piscines...) dans le même format.
+   codé en HTML/CSS (`.logo` dans `index.html`), en attendant le fichier logo officiel de FH Signature.
+   Remplacez-le par le vrai logo (fichier image dans `assets/`, ex. `assets/logo.png`, à intégrer
+   dans les balises `.logo`).
+2. **Photos** — le hero, la section « Pourquoi nous confier votre bien » et les deux cartes
+   Casablanca/Marrakech utilisent désormais de vraies photographies FH Signature
+   (`assets/photos/`). La gestion locative, les propriétaires et les voyageurs utilisent encore
+   des illustrations SVG sur-mesure (`assets/illustrations/`) faute de photo dédiée : remplacez-les
+   par de vraies photos quand elles seront disponibles, en suivant le même schéma `<picture>`
+   (`.jpg` + `.webp`) que les photos déjà en place.
 3. **Coordonnées** — dans `js/main.js`, bloc `CONTACT` en haut du fichier :
    - `email` : adresse email officielle
    - `whatsappNumber` : numéro WhatsApp Business (format international sans « + »)
