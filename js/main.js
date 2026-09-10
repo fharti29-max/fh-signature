@@ -64,18 +64,12 @@
   /* ============================================================
      Simulateur de rentabilité
      ============================================================ */
-  var simVille = document.getElementById('sim-ville');
-  var simType = document.getElementById('sim-type');
   var simPrix = document.getElementById('sim-prix');
   var simNuits = document.getElementById('sim-nuits');
-  var simAirbnb = document.getElementById('sim-airbnb');
-  var simAirbnbValue = document.getElementById('sim-airbnb-value');
 
   var resBrut = document.getElementById('res-brut');
   var resCommission = document.getElementById('res-commission');
-  var resAirbnb = document.getElementById('res-airbnb');
   var resNet = document.getElementById('res-net');
-  var resAnnuel = document.getElementById('res-annuel');
 
   var COMMISSION_RATE = 0.20;
 
@@ -91,38 +85,22 @@
   function computeSimulation() {
     var prix = parseFloat(simPrix.value) || 0;
     var nuits = parseFloat(simNuits.value) || 0;
-    var airbnbRate = (parseFloat(simAirbnb.value) || 0) / 100;
-
-    simAirbnbValue.textContent = (parseFloat(simAirbnb.value) || 0) + ' %';
 
     var caBrut = prix * nuits;
     var commission = caBrut * COMMISSION_RATE;
-    var fraisAirbnb = caBrut * airbnbRate;
-    var revenuNet = caBrut - commission - fraisAirbnb;
+    var revenuNet = caBrut - commission;
 
     resBrut.textContent = formatMAD(caBrut);
     resCommission.textContent = formatMAD(commission);
-    resAirbnb.textContent = formatMAD(fraisAirbnb);
     resNet.textContent = formatMAD(revenuNet);
-    resAnnuel.textContent = formatMAD(revenuNet * 12);
   }
 
-  [simVille, simType, simPrix, simNuits, simAirbnb].forEach(function (el) {
+  [simPrix, simNuits].forEach(function (el) {
     if (!el) return;
     el.addEventListener('input', computeSimulation);
     el.addEventListener('change', computeSimulation);
   });
   computeSimulation();
-
-  var simCtaBtn = document.getElementById('simCtaBtn');
-  if (simCtaBtn) {
-    simCtaBtn.addEventListener('click', function () {
-      var cVille = document.getElementById('c-ville');
-      var cType = document.getElementById('c-type');
-      if (cVille) cVille.value = simVille.value === 'Marrakech' || simVille.value === 'Casablanca' ? simVille.value : 'Autre';
-      if (cType) cType.value = simType.value;
-    });
-  }
 
   /* ============================================================
      Formulaire de contact
@@ -183,6 +161,22 @@
   if (floatWhatsapp) floatWhatsapp.href = waLink;
   if (contactEmail) contactEmail.textContent = CONTACT.email;
   if (contactPhone) contactPhone.textContent = CONTACT.phoneDisplay;
+
+  /* ============================================================
+     Le bouton WhatsApp flottant s'efface au-dessus de la FAQ et
+     du formulaire de contact pour ne jamais masquer une question
+     ou un champ (le contact propose déjà son propre bouton WhatsApp).
+     ============================================================ */
+  if (floatWhatsapp && 'IntersectionObserver' in window) {
+    var hideZones = [document.getElementById('faq'), document.getElementById('contact')].filter(Boolean);
+    var zoneState = new Map();
+    var hideObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) { zoneState.set(entry.target, entry.isIntersecting); });
+      var shouldHide = Array.from(zoneState.values()).some(Boolean);
+      floatWhatsapp.classList.toggle('is-hidden', shouldHide);
+    }, { threshold: 0 });
+    hideZones.forEach(function (zone) { hideObserver.observe(zone); });
+  }
 
   /* ============================================================
      Année du pied de page

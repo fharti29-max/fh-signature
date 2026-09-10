@@ -43,12 +43,26 @@ a été généré pour un affichage propre sur fond photo/foncé, sans aucune mo
 
 ## Simulateur de rentabilité
 
-Le simulateur (`#estimation`) calcule, entièrement côté navigateur :
+Le simulateur (`#estimation`) calcule, entièrement côté navigateur, sur une base annuelle :
 
-- CA brut mensuel = prix moyen / nuit × nuits réservées / mois
-- Commission FH Signature = CA brut × 20 %
-- Frais Airbnb estimés = CA brut × taux Airbnb (curseur configurable, 3 % par défaut)
-- Revenu estimé propriétaire = CA brut − commission − frais Airbnb
-- Estimation annuelle = revenu mensuel estimé × 12
+- Revenus bruts estimés = prix moyen / nuit × nombre de nuits louées / an
+- Commission FH Signature = revenus bruts × 20 % TTC (taux fixe, non modifiable)
+- Revenus estimés pour le propriétaire = revenus bruts − commission
 
-Il s'agit d'une **estimation indicative**, clairement présentée comme telle sur le site.
+Il s'agit d'une **estimation indicative**, clairement présentée comme telle sur le site. FH Signature
+facture 20 % TTC des revenus générés par le bien : cette mention doit rester identique partout sur
+le site (services, simulateur, FAQ) et ne doit jamais être remplacée par un autre taux.
+
+## Structure des sections (page unique)
+
+Accueil (hero) → Positionnement → Comment ça fonctionne (4 étapes) → Nos services (6, en liste
+sobre) → Simulateur → Pourquoi FH Signature (4 points) → Votre interlocutrice → Zone d'intervention
+→ FAQ (accordéon, natif `<details>/<summary>`, sans JavaScript) → Contact → Pied de page.
+
+Le bouton WhatsApp flottant se masque automatiquement au-dessus des sections FAQ et Contact
+(voir `js/main.js`) afin de ne jamais recouvrir une question ou un champ de formulaire — la
+section Contact propose déjà son propre bouton WhatsApp intégré.
+
+La section « Votre interlocutrice » utilise un médaillon-monogramme (lettre « F ») en attendant une
+vraie photo professionnelle de Fatiha : remplacez `.host-portrait` dans `index.html` par une
+`<img>`/`<picture>` dès qu'elle sera disponible.
