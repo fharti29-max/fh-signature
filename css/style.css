@@ -520,9 +520,14 @@ section{ position: relative; }
   border-radius: var(--radius-l);
   background: linear-gradient(150deg, var(--c-gold-light), var(--c-sand));
   box-shadow: var(--shadow-card);
-  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
 }
-.host-portrait-mark{ font-family: var(--f-script); font-size: 7rem; color: rgba(255,255,255,.65); }
+.host-portrait img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 .host-quote{
   font-family: var(--f-serif);
   font-style: italic;

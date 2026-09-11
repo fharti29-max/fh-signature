@@ -64,6 +64,5 @@ Le bouton WhatsApp flottant se masque automatiquement au-dessus des sections FAQ
 (voir `js/main.js`) afin de ne jamais recouvrir une question ou un champ de formulaire — la
 section Contact propose déjà son propre bouton WhatsApp intégré.
 
-La section « Votre interlocutrice » utilise un médaillon-monogramme (lettre « F ») en attendant une
-vraie photo professionnelle de Fatiha : remplacez `.host-portrait` dans `index.html` par une
-`<img>`/`<picture>` dès qu'elle sera disponible.
+La section « Votre interlocutrice » affiche une photo professionnelle de Fatiha
+(`assets/photos/fatiha-portrait.jpg` / `.webp`).
