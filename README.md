@@ -36,12 +36,11 @@ n'importe quel hébergement statique (Netlify, Vercel, GitHub Pages, OVH, o2swit
    `https://www.fhsignature.ma/` à titre d'exemple ; à ajuster selon le nom de domaine réel.
 
 Le logo n'apparaît qu'une seule fois sur toute la page, dans le header (`assets/logo-mark.png`,
-fichier officiel fourni par FH Signature, utilisé tel quel — seuls quelques pixels de bruit de
-détourage dans les coins, invisibles à l'affichage normal, ont été nettoyés pour un fond parfaitement
-transparent). Le hero n'affiche pas de logo — il commence directement par la mention « Conciergerie
-premium au Maroc ». Le pied de page affiche le nom « FH Signature » en texte (pas d'image, pour ne
-pas dupliquer le logo). Le favicon est un recadrage du même fichier limité au monogramme, sans le
-mot « Signature » (illisible à cette taille).
+fichier officiel fourni par FH Signature — monogramme FH, palmier/maison, « Signature » en script
+doré — utilisé tel quel, simplement recadré à son contenu réel, marge transparente incluse). Le
+hero n'affiche pas de logo — il commence directement par la mention « Conciergerie premium au
+Maroc ». Le pied de page affiche le nom « FH Signature » en texte (pas d'image, pour ne pas
+dupliquer le logo). Le favicon est un recadrage carré du même fichier.
 
 ## Simulateur de rentabilité
 
