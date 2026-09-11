@@ -184,12 +184,12 @@ section{ position: relative; }
   gap: 12px;
 }
 .logo-mark-img{
-  height: 44px; width: auto;
+  height: 60px; width: auto;
   flex-shrink: 0;
   filter: drop-shadow(0 2px 6px rgba(46,32,22,.35));
   transition: height var(--transition);
 }
-.site-header.is-scrolled .logo-mark-img{ height: 36px; }
+.site-header.is-scrolled .logo-mark-img{ height: 50px; }
 
 .main-nav{ display: flex; align-items: center; gap: 22px; }
 .main-nav a{
@@ -720,7 +720,14 @@ section{ position: relative; }
   padding-bottom: 46px;
   border-bottom: 1px solid rgba(255,255,255,.1);
 }
-.footer-logo-img{ height: 58px; width: auto; filter: drop-shadow(0 4px 10px rgba(0,0,0,.35)); }
+.footer-brand{
+  display: inline-block;
+  font-family: var(--f-serif);
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: .01em;
+  color: var(--c-gold-light);
+}
 .footer-about p{ font-size: .9rem; color: rgba(255,255,255,.62); margin-top: 16px; max-width: 320px; }
 .footer-col h4{ color: var(--c-white); font-size: .82rem; letter-spacing: .1em; text-transform: uppercase; font-family: var(--f-sans); font-weight: 500; margin-bottom: 18px; }
 .footer-col ul li{ margin-bottom: 10px; font-size: .9rem; }
@@ -803,8 +810,8 @@ section{ position: relative; }
 }
 
 @media (max-width: 640px){
-  .logo-mark-img{ height: 36px; }
-  .site-header.is-scrolled .logo-mark-img{ height: 30px; }
+  .logo-mark-img{ height: 46px; }
+  .site-header.is-scrolled .logo-mark-img{ height: 40px; }
   .float-whatsapp{ width: 46px; height: 46px; right: 16px; bottom: max(16px, env(safe-area-inset-bottom)); }
   .float-whatsapp svg{ width: 21px; height: 21px; }
 }

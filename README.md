@@ -10,11 +10,10 @@ Site internet officiel de **FH Signature**, conciergerie & gestion locative cour
 index.html                 Page unique (toutes les sections, navigation par ancres)
 css/style.css               Feuille de style (design system, palette, responsive)
 js/main.js                  Logique interactive (menu, animations, simulateur, formulaire)
-assets/favicon.png          Icône de l'onglet (recadrée depuis le logo officiel)
-assets/logo.png              Logo officiel FH Signature, fichier source intact (1254×1254)
+assets/favicon.png          Icône de l'onglet (recadrée sur le seul monogramme, sans le mot « Signature »)
 assets/logo-og.jpg           Logo aplati en JPEG, utilisé pour le partage social (og:image)
-assets/logo-mark.png         Logo recadré (monogramme FH + « Signature »), fond crème — header/footer
-assets/logo-mark.webp        Même recadrage, en WebP (plus léger)
+assets/logo-mark.png         Logo officiel FH Signature (monogramme + « Signature »), fond transparent — header
+assets/logo-mark.webp        Même fichier, en WebP (plus léger)
 assets/patterns/            Motifs décoratifs zellige (SVG, répétés en arrière-plan)
 assets/illustrations/       Arche décorative SVG (hero)
 assets/photos/              Photographies FH Signature (Marrakech, Casablanca), en .jpg + .webp
@@ -36,12 +35,13 @@ n'importe quel hébergement statique (Netlify, Vercel, GitHub Pages, OVH, o2swit
 3. **Domaine** — les balises `canonical` et Open Graph dans `index.html` utilisent
    `https://www.fhsignature.ma/` à titre d'exemple ; à ajuster selon le nom de domaine réel.
 
-Le logo n'apparaît qu'une seule fois dans le header (et une fois dans le pied de page) : c'est un
-recadrage exact du fichier officiel fourni (`assets/logo.png`), sans aucun pixel modifié, retenant
-uniquement le monogramme « FH » et le mot « Signature » et retirant l'anneau doré, l'étoile,
-« MAROC » et la baseline qui l'entouraient dans le fichier d'origine. Le hero n'affiche plus de
-logo — il commence directement par la mention « Conciergerie premium au Maroc ». Le fichier source
-complet (`assets/logo.png`) reste inchangé et disponible si un autre recadrage est nécessaire.
+Le logo n'apparaît qu'une seule fois sur toute la page, dans le header (`assets/logo-mark.png`,
+fichier officiel fourni par FH Signature, utilisé tel quel — seuls quelques pixels de bruit de
+détourage dans les coins, invisibles à l'affichage normal, ont été nettoyés pour un fond parfaitement
+transparent). Le hero n'affiche pas de logo — il commence directement par la mention « Conciergerie
+premium au Maroc ». Le pied de page affiche le nom « FH Signature » en texte (pas d'image, pour ne
+pas dupliquer le logo). Le favicon est un recadrage du même fichier limité au monogramme, sans le
+mot « Signature » (illisible à cette taille).
 
 ## Simulateur de rentabilité
 
