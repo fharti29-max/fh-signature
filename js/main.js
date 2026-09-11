@@ -153,30 +153,12 @@
   var waLink = 'https://wa.me/' + CONTACT.whatsappNumber + '?text=' + waMessage;
 
   var whatsappLink = document.getElementById('whatsappLink');
-  var floatWhatsapp = document.getElementById('floatWhatsapp');
   var contactEmail = document.getElementById('contactEmail');
   var contactPhone = document.getElementById('contactPhone');
 
   if (whatsappLink) whatsappLink.href = waLink;
-  if (floatWhatsapp) floatWhatsapp.href = waLink;
   if (contactEmail) contactEmail.textContent = CONTACT.email;
   if (contactPhone) contactPhone.textContent = CONTACT.phoneDisplay;
-
-  /* ============================================================
-     Le bouton WhatsApp flottant s'efface au-dessus de la FAQ et
-     du formulaire de contact pour ne jamais masquer une question
-     ou un champ (le contact propose déjà son propre bouton WhatsApp).
-     ============================================================ */
-  if (floatWhatsapp && 'IntersectionObserver' in window) {
-    var hideZones = [document.getElementById('faq'), document.getElementById('contact')].filter(Boolean);
-    var zoneState = new Map();
-    var hideObserver = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) { zoneState.set(entry.target, entry.isIntersecting); });
-      var shouldHide = Array.from(zoneState.values()).some(Boolean);
-      floatWhatsapp.classList.toggle('is-hidden', shouldHide);
-    }, { threshold: 0 });
-    hideZones.forEach(function (zone) { hideObserver.observe(zone); });
-  }
 
   /* ============================================================
      Année du pied de page

@@ -60,9 +60,8 @@ Accueil (hero) → Positionnement → Comment ça fonctionne (4 étapes) → Nos
 sobre) → Simulateur → Pourquoi FH Héritage (4 points) → Votre interlocutrice → Zone d'intervention
 → FAQ (accordéon, natif `<details>/<summary>`, sans JavaScript) → Contact → Pied de page.
 
-Le bouton WhatsApp flottant se masque automatiquement au-dessus des sections FAQ et Contact
-(voir `js/main.js`) afin de ne jamais recouvrir une question ou un champ de formulaire — la
-section Contact propose déjà son propre bouton WhatsApp intégré.
+Il n'y a pas de bouton WhatsApp flottant : le contact WhatsApp se fait uniquement via le bouton
+discret « Écrire sur WhatsApp → » intégré à la section Contact.
 
 La section « Votre interlocutrice » affiche une photo professionnelle de Fatiha
 (`assets/photos/fatiha-portrait.jpg` / `.webp`).
