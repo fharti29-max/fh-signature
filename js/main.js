@@ -2,10 +2,10 @@
   'use strict';
 
   /* ============================================================
-     Configuration à personnaliser par FH Signature
+     Configuration à personnaliser par FH Héritage
      ============================================================ */
   var CONTACT = {
-    email: 'contact@fhsignature.ma', // TODO: remplacer par l'adresse email officielle
+    email: 'contact@fhheritage.ma', // TODO: remplacer par l'adresse email officielle
     whatsappNumber: '212600000000',  // TODO: remplacer par le numéro WhatsApp officiel (format international sans "+")
     phoneDisplay: '+212 6XX XX XX XX' // TODO: remplacer par le numéro de téléphone officiel
   };
@@ -132,7 +132,7 @@
 
       // TODO : remplacer ce bloc par un appel réel (API email, CRM, WhatsApp Business...)
       // Exemple : fetch('/api/contact', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(data) })
-      console.log('Nouvelle demande FH Signature :', data);
+      console.log('Nouvelle demande FH Héritage :', data);
 
       showFormStatus('Merci ' + data.prenom + ', votre demande a bien été enregistrée. Notre équipe vous recontacte sous 24h.', false);
       contactForm.reset();
@@ -149,7 +149,7 @@
   /* ============================================================
      Liens WhatsApp & contact
      ============================================================ */
-  var waMessage = encodeURIComponent("Bonjour FH Signature, je souhaite obtenir une estimation pour mon bien.");
+  var waMessage = encodeURIComponent("Bonjour FH Héritage, je souhaite obtenir une estimation pour mon bien.");
   var waLink = 'https://wa.me/' + CONTACT.whatsappNumber + '?text=' + waMessage;
 
   var whatsappLink = document.getElementById('whatsappLink');
