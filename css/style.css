@@ -254,9 +254,9 @@ section{ position: relative; }
 .hero-scrim{
   position: absolute; inset: 0;
   background:
-    radial-gradient(ellipse at 18% 15%, rgba(216,188,133,.28), transparent 55%),
-    radial-gradient(ellipse at 82% 90%, rgba(193,104,61,.3), transparent 55%),
-    linear-gradient(160deg, rgba(46,32,22,.92) 0%, rgba(74,51,36,.86) 46%, rgba(122,76,48,.66) 100%);
+    radial-gradient(ellipse at 18% 15%, rgba(216,188,133,.2), transparent 55%),
+    radial-gradient(ellipse at 82% 90%, rgba(193,104,61,.22), transparent 55%),
+    linear-gradient(160deg, rgba(46,32,22,.7) 0%, rgba(74,51,36,.58) 46%, rgba(122,76,48,.36) 100%);
 }
 .hero-arch{
   position: absolute;
@@ -274,40 +274,34 @@ section{ position: relative; }
   align-items: center;
   gap: 40px;
 }
-.hero-content{ max-width: 620px; }
-.hero-badge{
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 8px 18px;
-  border: 1px solid rgba(255,255,255,.35);
-  border-radius: 999px;
-  font-size: .72rem;
-  letter-spacing: .18em;
+.hero-content{ max-width: 560px; }
+.hero-eyebrow{
+  font-family: var(--f-sans);
+  font-weight: 400;
+  font-size: .74rem;
+  letter-spacing: .28em;
   text-transform: uppercase;
-  margin-bottom: 28px;
   color: var(--c-gold-light);
+  margin: 0 0 26px;
 }
-.hero-badge .dot{ width: 5px; height: 5px; border-radius: 50%; background: var(--c-terracotta); }
 .hero h1{
   color: var(--c-white);
-  font-size: clamp(2.2rem, 4.6vw, 3.6rem);
-  margin-bottom: .35em;
-}
-.hero-subtitle{
   font-family: var(--f-serif);
-  font-style: italic;
-  font-size: clamp(1.1rem, 2vw, 1.45rem);
-  color: var(--c-gold-light);
-  margin-bottom: 22px;
+  font-weight: 500;
+  font-size: clamp(2.1rem, 4.2vw, 3.4rem);
+  line-height: 1.22;
+  letter-spacing: .005em;
+  margin-bottom: 30px;
 }
 .hero-text{
-  color: rgba(255,255,255,.86);
-  font-size: 1.08rem;
-  max-width: 540px;
-  margin-bottom: 8px;
+  font-weight: 300;
+  color: rgba(255,255,255,.82);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  max-width: 440px;
+  margin-bottom: 0;
 }
-.hero-ctas{ display: flex; flex-wrap: wrap; gap: 18px; margin-top: 30px; }
+.hero-ctas{ display: flex; flex-wrap: wrap; gap: 18px; margin-top: 38px; }
 .hero-visual{
   position: relative;
   z-index: 2;
