@@ -30,10 +30,15 @@ n'importe quel hébergement statique (Netlify, Vercel, GitHub Pages, OVH, o2swit
    - `whatsappNumber` : numéro WhatsApp Business (actuellement +33 7 81 21 67 31, format international
      sans « + »)
    - `phoneDisplay` : numéro de téléphone affiché
-2. **Formulaire de contact** — actuellement le formulaire valide les champs et affiche un message
-   de confirmation, mais n'envoie nulle part (voir commentaire `TODO` dans `js/main.js`,
-   fonction de soumission). Branchez-le sur votre service d'envoi d'email, votre CRM ou l'API
-   WhatsApp Business lors de la mise en production.
+2. **Formulaire de contact** — branché sur **Netlify Forms** (`data-netlify="true"` sur le
+   formulaire `#contactForm`, champ caché `form-name`, honeypot anti-spam `bot-field`). Aucune
+   configuration côté code n'est nécessaire : dès que le site est déployé sur Netlify, les
+   demandes apparaissent automatiquement dans *Site → Forms* du tableau de bord Netlify.
+   Pour recevoir une notification email à chaque nouvelle demande, à activer manuellement dans
+   Netlify : *Site settings → Forms → Form notifications → Add notification → Email notification*,
+   puis renseigner l'adresse de réception (ex. `contact@fhheritage.com`). Le message de
+   confirmation ne s'affiche que si l'envoi réseau a réellement réussi ; en cas d'échec, un
+   message d'erreur s'affiche et les champs saisis sont conservés.
 3. **Domaine** — les balises `canonical` et Open Graph dans `index.html` utilisent
    `https://www.fhheritage.ma/` à titre d'exemple ; à ajuster selon le nom de domaine réel.
 

@@ -103,14 +103,17 @@
   computeSimulation();
 
   /* ============================================================
-     Formulaire de contact
-     Prêt à être connecté à un service d'envoi d'email,
-     un CRM ou une API WhatsApp Business.
+     Formulaire de contact — soumis à Netlify Forms.
+     Les demandes apparaissent dans Netlify > Site > Forms, avec
+     notification email configurable dans les réglages du site.
      ============================================================ */
   var contactForm = document.getElementById('contactForm');
   var formStatus = document.getElementById('formStatus');
 
   if (contactForm) {
+    var submitBtn = contactForm.querySelector('button[type="submit"]');
+    var submitBtnDefaultText = submitBtn ? submitBtn.textContent : '';
+
     contactForm.addEventListener('submit', function (e) {
       e.preventDefault();
 
@@ -130,12 +133,32 @@
         return;
       }
 
-      // TODO : remplacer ce bloc par un appel réel (API email, CRM, WhatsApp Business...)
-      // Exemple : fetch('/api/contact', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(data) })
-      console.log('Nouvelle demande FH Héritage :', data);
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Envoi en cours…';
+      }
 
-      showFormStatus('Merci ' + data.prenom + ', votre demande a bien été enregistrée. Notre équipe vous recontacte sous 24h.', false);
-      contactForm.reset();
+      var body = new URLSearchParams(new FormData(contactForm)).toString();
+
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: body
+      })
+        .then(function (response) {
+          if (!response.ok) throw new Error('Réponse serveur invalide (' + response.status + ')');
+          showFormStatus('Merci ' + data.prenom + ', votre demande a bien été enregistrée. Notre équipe vous recontacte sous 24h.', false);
+          contactForm.reset();
+        })
+        .catch(function () {
+          showFormStatus("Une erreur est survenue lors de l'envoi de votre demande. Merci de réessayer, ou de nous contacter directement par WhatsApp ou par email.", true);
+        })
+        .finally(function () {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = submitBtnDefaultText;
+          }
+        });
     });
   }
 
