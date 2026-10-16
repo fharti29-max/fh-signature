@@ -12,8 +12,8 @@ css/style.css               Feuille de style (design system, palette, responsive
 js/main.js                  Logique interactive (menu, animations, simulateur, formulaire)
 assets/favicon.png          Icône de l'onglet (recadrée sur le seul monogramme, sans le mot « Héritage »)
 assets/logo-og.jpg           Logo aplati en JPEG, utilisé pour le partage social (og:image)
-assets/logo-mark.png         Logo officiel FH Héritage (plaque noire, monogramme FH doré,
-                            « Héritage » + slogan), header et footer
+assets/logo-mark.png         Logo officiel FH Héritage (monogramme FH + « Héritage » en doré,
+                            fond transparent, sans slogan), header et footer
 assets/logo-mark.webp        Même fichier, en WebP (plus léger)
 assets/patterns/            Motifs décoratifs zellige (SVG, répétés en arrière-plan)
 assets/illustrations/       Arche décorative SVG (hero)
@@ -37,11 +37,11 @@ n'importe quel hébergement statique (Netlify, Vercel, GitHub Pages, OVH, o2swit
 3. **Domaine** — les balises `canonical` et Open Graph dans `index.html` utilisent
    `https://www.fhheritage.ma/` à titre d'exemple ; à ajuster selon le nom de domaine réel.
 
-Le logo apparaît dans le header et dans le footer (`assets/logo-mark.png`, fichier officiel fourni
-par FH Héritage — plaque noire, monogramme FH doré, « Héritage » et le slogan « Votre bien, notre
-priorité » intégrés au visuel — utilisé tel quel, sans modification). Le hero n'affiche pas de logo
-— il commence directement par la mention « Conciergerie & gestion locative ». Le favicon est un
-recadrage serré sur le seul monogramme, fond noir conservé.
+Le logo apparaît dans le header et dans le footer (`assets/logo-mark.png`, dérivé du fichier
+officiel fourni par FH Héritage — monogramme FH et « Héritage » en doré, fond rendu transparent,
+slogan retiré pour cette version). Le hero n'affiche pas de logo — il commence directement par la
+mention « Conciergerie & gestion locative ». Le favicon est un recadrage serré sur le seul
+monogramme, fond transparent.
 
 ## Simulateur de rentabilité
 
