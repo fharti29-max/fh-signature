@@ -26,7 +26,8 @@ n'importe quel hébergement statique (Netlify, Vercel, GitHub Pages, OVH, o2swit
 
 1. **Coordonnées** — dans `js/main.js`, bloc `CONTACT` en haut du fichier :
    - `email` : adresse email officielle
-   - `whatsappNumber` : numéro WhatsApp Business (format international sans « + »)
+   - `whatsappNumber` : numéro WhatsApp Business (actuellement +33 7 81 21 67 31, format international
+     sans « + »)
    - `phoneDisplay` : numéro de téléphone affiché
 2. **Formulaire de contact** — actuellement le formulaire valide les champs et affiche un message
    de confirmation, mais n'envoie nulle part (voir commentaire `TODO` dans `js/main.js`,
@@ -47,21 +48,23 @@ dupliquer le logo). Le favicon est un recadrage carré du même fichier.
 Le simulateur (`#estimation`) calcule, entièrement côté navigateur, sur une base annuelle :
 
 - Revenus bruts estimés = prix moyen / nuit × nombre de nuits louées / an
-- Commission FH Héritage = revenus bruts × 20 % TTC (taux fixe, non modifiable)
+- Commission FH Héritage = revenus bruts × 20 % HT (taux fixe, non modifiable)
 - Revenus estimés pour le propriétaire = revenus bruts − commission
 
 Il s'agit d'une **estimation indicative**, clairement présentée comme telle sur le site. FH Héritage
-facture 20 % TTC des revenus générés par le bien : cette mention doit rester identique partout sur
-le site (services, simulateur, FAQ) et ne doit jamais être remplacée par un autre taux.
+facture 20 % HT des revenus générés par le bien au titre de ses prestations de gestion locative :
+cette mention doit rester identique partout sur le site (services, simulateur, FAQ) et ne doit
+jamais être présentée comme TTC ni remplacée par un autre taux.
 
 ## Structure des sections (page unique)
 
-Accueil (hero) → Positionnement → Comment ça fonctionne (4 étapes) → Nos services (6, en liste
+Accueil (hero) → Positionnement → Comment ça fonctionne (4 étapes) → Nos services (8, en liste
 sobre) → Simulateur → Pourquoi FH Héritage (4 points) → Votre interlocutrice → Zone d'intervention
 → FAQ (accordéon, natif `<details>/<summary>`, sans JavaScript) → Contact → Pied de page.
 
-Il n'y a pas de bouton WhatsApp flottant : le contact WhatsApp se fait uniquement via le bouton
-discret « Écrire sur WhatsApp → » intégré à la section Contact.
+Il n'y a pas de bouton WhatsApp flottant : le contact WhatsApp se fait via le bouton discret
+« Nous contacter sur WhatsApp → » de la section Contact, ainsi que via un lien dédié dans le menu
+mobile (hamburger), pour rester facilement accessible sur téléphone sans surcharger l'en-tête.
 
 La section « Votre interlocutrice » affiche une photo professionnelle de Fatiha
 (`assets/photos/fatiha-portrait.jpg` / `.webp`).
