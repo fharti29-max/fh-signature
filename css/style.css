@@ -201,12 +201,12 @@ section{ position: relative; }
   justify-self: start;
 }
 .logo-mark-img{
-  height: 60px; width: auto;
+  height: 84px; width: auto;
   flex-shrink: 0;
   filter: drop-shadow(0 2px 6px rgba(46,32,22,.35));
   transition: height var(--transition);
 }
-.site-header.is-scrolled .logo-mark-img{ height: 50px; }
+.site-header.is-scrolled .logo-mark-img{ height: 68px; }
 
 .main-nav{ display: flex; align-items: center; justify-content: center; gap: 22px; justify-self: center; }
 .main-nav a{
@@ -731,7 +731,7 @@ section{ position: relative; }
   border-bottom: 1px solid rgba(255,255,255,.1);
 }
 .footer-brand{ display: inline-block; }
-.footer-brand-img{ height: 66px; width: auto; display: block; }
+.footer-brand-img{ height: 110px; width: auto; display: block; }
 .footer-about p{ font-size: .9rem; color: rgba(255,255,255,.62); margin-top: 16px; max-width: 320px; }
 .footer-col h4{ color: var(--c-white); font-size: .82rem; letter-spacing: .1em; text-transform: uppercase; font-family: var(--f-sans); font-weight: 500; margin-bottom: 18px; }
 .footer-col ul li{ margin-bottom: 10px; font-size: .9rem; }
@@ -807,8 +807,8 @@ section{ position: relative; }
 }
 
 @media (max-width: 640px){
-  .logo-mark-img{ height: 46px; }
-  .site-header.is-scrolled .logo-mark-img{ height: 40px; }
+  .logo-mark-img{ height: 64px; }
+  .site-header.is-scrolled .logo-mark-img{ height: 54px; }
 }
 
 @media (max-width: 720px){
