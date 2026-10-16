@@ -5,7 +5,7 @@
      Configuration à personnaliser par FH Héritage
      ============================================================ */
   var CONTACT = {
-    email: 'contact@fhheritage.ma', // TODO: remplacer par l'adresse email officielle si besoin
+    email: 'contact@fhheritage.com',
     whatsappNumber: '33781216731',  // WhatsApp Business FH Héritage (+33 7 81 21 67 31)
     phoneDisplay: '+33 7 81 21 67 31'
   };
@@ -159,7 +159,10 @@
 
   if (whatsappLink) whatsappLink.href = waLink;
   if (whatsappLinkNav) whatsappLinkNav.href = waLink;
-  if (contactEmail) contactEmail.textContent = CONTACT.email;
+  if (contactEmail) {
+    contactEmail.textContent = CONTACT.email;
+    contactEmail.href = 'mailto:' + CONTACT.email;
+  }
   if (contactPhone) contactPhone.textContent = CONTACT.phoneDisplay;
 
   /* ============================================================
