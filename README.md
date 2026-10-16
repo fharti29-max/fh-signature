@@ -8,6 +8,8 @@ Site internet officiel de **FH Héritage**, conciergerie & gestion locative cour
 
 ```
 index.html                 Page unique (toutes les sections, navigation par ancres)
+sitemap.xml                 Plan du site pour les moteurs de recherche
+robots.txt                  Règles d'exploration + référence au sitemap
 css/style.css               Feuille de style (design system, palette, responsive)
 js/main.js                  Logique interactive (menu, animations, simulateur, formulaire)
 assets/favicon.png          Icône de l'onglet (recadrée sur le seul monogramme, sans le mot « Héritage »)
@@ -39,8 +41,9 @@ n'importe quel hébergement statique (Netlify, Vercel, GitHub Pages, OVH, o2swit
    puis renseigner l'adresse de réception (ex. `contact@fhheritage.com`). Le message de
    confirmation ne s'affiche que si l'envoi réseau a réellement réussi ; en cas d'échec, un
    message d'erreur s'affiche et les champs saisis sont conservés.
-3. **Domaine** — les balises `canonical` et Open Graph dans `index.html` utilisent
-   `https://www.fhheritage.ma/` à titre d'exemple ; à ajuster selon le nom de domaine réel.
+3. **Domaine** — les balises `canonical`, Open Graph et les données structurées (JSON-LD) dans
+   `index.html`, ainsi que `sitemap.xml` et `robots.txt`, utilisent le domaine officiel
+   `https://fhheritage.com/`.
 
 Le logo apparaît dans le header et dans le footer (`assets/logo-mark.png`, dérivé du fichier
 officiel fourni par FH Héritage — monogramme FH et « Héritage » en doré, fond rendu transparent,
