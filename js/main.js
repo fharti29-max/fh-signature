@@ -1,0 +1,273 @@
+(function () {
+  'use strict';
+
+  /* ============================================================
+     Configuration à personnaliser par FH Héritage
+     ============================================================ */
+  var CONTACT = {
+    email: 'contact@fhheritage.com',
+    whatsappNumber: '33781216731',  // WhatsApp Business FH Héritage (+33 7 81 21 67 31)
+    phoneDisplay: '+33 7 81 21 67 31'
+  };
+
+  var GA_MEASUREMENT_ID = 'G-Y0Q0S7HPCF';
+  var COOKIE_CONSENT_KEY = 'fh_cookie_consent';
+
+  /* ============================================================
+     En-tête : fond au scroll + menu mobile
+     ============================================================ */
+  var header = document.getElementById('siteHeader');
+  var navToggle = document.getElementById('navToggle');
+  var mainNav = document.getElementById('mainNav');
+
+  function onScroll() {
+    if (window.scrollY > 40) {
+      header.classList.add('is-scrolled');
+    } else {
+      header.classList.remove('is-scrolled');
+    }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  function closeNav() {
+    mainNav.classList.remove('is-open');
+    navToggle.classList.remove('is-active');
+    navToggle.setAttribute('aria-expanded', 'false');
+  }
+
+  navToggle.addEventListener('click', function () {
+    var isOpen = mainNav.classList.toggle('is-open');
+    navToggle.classList.toggle('is-active', isOpen);
+    navToggle.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  mainNav.querySelectorAll('a').forEach(function (link) {
+    link.addEventListener('click', closeNav);
+  });
+
+  /* ============================================================
+     Apparition douce des sections au scroll
+     ============================================================ */
+  var revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var revealObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+    revealEls.forEach(function (el) { revealObserver.observe(el); });
+  } else {
+    revealEls.forEach(function (el) { el.classList.add('is-visible'); });
+  }
+
+  /* ============================================================
+     Simulateur de rentabilité
+     ============================================================ */
+  var simPrix = document.getElementById('sim-prix');
+  var simNuits = document.getElementById('sim-nuits');
+
+  var resBrut = document.getElementById('res-brut');
+  var resCommission = document.getElementById('res-commission');
+  var resNet = document.getElementById('res-net');
+
+  var COMMISSION_RATE = 0.20;
+
+  var madFormatter = new Intl.NumberFormat('fr-MA', {
+    maximumFractionDigits: 0
+  });
+
+  function formatMAD(value) {
+    if (!isFinite(value)) value = 0;
+    return madFormatter.format(Math.max(0, Math.round(value))) + ' MAD';
+  }
+
+  function computeSimulation() {
+    var prix = parseFloat(simPrix.value) || 0;
+    var nuits = parseFloat(simNuits.value) || 0;
+
+    var caBrut = prix * nuits;
+    var commission = caBrut * COMMISSION_RATE;
+    var revenuNet = caBrut - commission;
+
+    resBrut.textContent = formatMAD(caBrut);
+    resCommission.textContent = formatMAD(commission);
+    resNet.textContent = formatMAD(revenuNet);
+  }
+
+  [simPrix, simNuits].forEach(function (el) {
+    if (!el) return;
+    el.addEventListener('input', computeSimulation);
+    el.addEventListener('change', computeSimulation);
+  });
+  computeSimulation();
+
+  /* ============================================================
+     Formulaire de contact — soumis à Netlify Forms.
+     Les demandes apparaissent dans Netlify > Site > Forms, avec
+     notification email configurable dans les réglages du site.
+     ============================================================ */
+  var contactForm = document.getElementById('contactForm');
+  var formStatus = document.getElementById('formStatus');
+
+  if (contactForm) {
+    var submitBtn = contactForm.querySelector('button[type="submit"]');
+    var submitBtnDefaultText = submitBtn ? submitBtn.textContent : '';
+
+    contactForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      var data = {
+        nom: document.getElementById('c-nom').value.trim(),
+        prenom: document.getElementById('c-prenom').value.trim(),
+        telephone: document.getElementById('c-telephone').value.trim(),
+        email: document.getElementById('c-email').value.trim(),
+        ville: document.getElementById('c-ville').value,
+        type: document.getElementById('c-type').value,
+        chambres: document.getElementById('c-chambres').value,
+        message: document.getElementById('c-message').value.trim()
+      };
+
+      if (!data.nom || !data.prenom || !data.telephone || !data.email) {
+        showFormStatus('Merci de renseigner votre nom, prénom, téléphone et email.', true);
+        return;
+      }
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Envoi en cours…';
+      }
+
+      var body = new URLSearchParams(new FormData(contactForm)).toString();
+
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: body
+      })
+        .then(function (response) {
+          if (!response.ok) throw new Error('Réponse serveur invalide (' + response.status + ')');
+          showFormStatus('Merci ' + data.prenom + ', votre demande a bien été enregistrée. Notre équipe vous recontacte sous 24h.', false);
+          contactForm.reset();
+        })
+        .catch(function () {
+          showFormStatus("Une erreur est survenue lors de l'envoi de votre demande. Merci de réessayer, ou de nous contacter directement par WhatsApp ou par email.", true);
+        })
+        .finally(function () {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = submitBtnDefaultText;
+          }
+        });
+    });
+  }
+
+  function showFormStatus(message, isError) {
+    if (!formStatus) return;
+    formStatus.textContent = message;
+    formStatus.classList.add('is-visible');
+    formStatus.classList.toggle('is-error', !!isError);
+  }
+
+  /* ============================================================
+     Liens WhatsApp & contact
+     ============================================================ */
+  var waMessage = encodeURIComponent("Bonjour FH Héritage, je souhaite obtenir une estimation pour mon bien.");
+  var waLink = 'https://wa.me/' + CONTACT.whatsappNumber + '?text=' + waMessage;
+
+  var whatsappLink = document.getElementById('whatsappLink');
+  var whatsappLinkNav = document.getElementById('whatsappLinkNav');
+  var contactEmail = document.getElementById('contactEmail');
+  var contactPhone = document.getElementById('contactPhone');
+
+  if (whatsappLink) whatsappLink.href = waLink;
+  if (whatsappLinkNav) whatsappLinkNav.href = waLink;
+  if (contactEmail) {
+    contactEmail.textContent = CONTACT.email;
+    contactEmail.href = 'mailto:' + CONTACT.email;
+  }
+  if (contactPhone) contactPhone.textContent = CONTACT.phoneDisplay;
+
+  /* ============================================================
+     Année du pied de page
+     ============================================================ */
+  var footerYear = document.getElementById('footerYear');
+  if (footerYear) footerYear.textContent = new Date().getFullYear();
+
+  /* ============================================================
+     Consentement cookies (RGPD) & Google Analytics 4
+     Les cookies statistiques ne sont activés qu'après acceptation
+     explicite du visiteur ; en l'absence d'accord (refus ou choix
+     non encore exprimé), aucun script Google Analytics n'est chargé.
+     ============================================================ */
+  var cookieBanner = document.getElementById('cookieBanner');
+  var cookieAccept = document.getElementById('cookieAccept');
+  var cookieReject = document.getElementById('cookieReject');
+  var cookieManageLink = document.getElementById('cookieManageLink');
+  var gaLoaded = false;
+
+  function loadGoogleAnalytics() {
+    if (gaLoaded) return;
+    gaLoaded = true;
+
+    window['ga-disable-' + GA_MEASUREMENT_ID] = false;
+
+    var gaScript = document.createElement('script');
+    gaScript.async = true;
+    gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_MEASUREMENT_ID;
+    document.head.appendChild(gaScript);
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { window.dataLayer.push(arguments); }
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', GA_MEASUREMENT_ID);
+  }
+
+  function disableGoogleAnalytics() {
+    window['ga-disable-' + GA_MEASUREMENT_ID] = true;
+  }
+
+  function showCookieBanner() {
+    if (cookieBanner) cookieBanner.classList.add('is-visible');
+  }
+
+  function hideCookieBanner() {
+    if (cookieBanner) cookieBanner.classList.remove('is-visible');
+  }
+
+  function setCookieConsent(choice) {
+    try { localStorage.setItem(COOKIE_CONSENT_KEY, choice); } catch (e) { /* stockage indisponible */ }
+    if (choice === 'accepted') {
+      loadGoogleAnalytics();
+    } else {
+      disableGoogleAnalytics();
+    }
+    hideCookieBanner();
+  }
+
+  var storedConsent = null;
+  try { storedConsent = localStorage.getItem(COOKIE_CONSENT_KEY); } catch (e) { /* stockage indisponible */ }
+
+  if (storedConsent === 'accepted') {
+    loadGoogleAnalytics();
+  } else if (storedConsent === 'rejected') {
+    disableGoogleAnalytics();
+  } else {
+    disableGoogleAnalytics();
+    showCookieBanner();
+  }
+
+  if (cookieAccept) cookieAccept.addEventListener('click', function () { setCookieConsent('accepted'); });
+  if (cookieReject) cookieReject.addEventListener('click', function () { setCookieConsent('rejected'); });
+  if (cookieManageLink) {
+    cookieManageLink.addEventListener('click', function (e) {
+      e.preventDefault();
+      showCookieBanner();
+    });
+  }
+
+})();
