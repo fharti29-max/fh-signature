@@ -44,6 +44,19 @@ n'importe quel hébergement statique (Netlify, Vercel, GitHub Pages, OVH, o2swit
 3. **Domaine** — les balises `canonical`, Open Graph et les données structurées (JSON-LD) dans
    `index.html`, ainsi que `sitemap.xml` et `robots.txt`, utilisent le domaine officiel
    `https://fhheritage.com/`.
+4. **Google Analytics 4** — dans `js/main.js`, constante `GA_MEASUREMENT_ID` (actuellement
+   `G-Y0Q0S7HPCF`), à remplacer si l'identifiant de mesure change.
+
+## Consentement cookies (RGPD) & Google Analytics
+
+Le site intègre Google Analytics 4, mais le script `gtag.js` n'est **chargé qu'après acceptation
+explicite du visiteur** : aucun cookie statistique n'est déposé avant ce choix. Au premier
+passage, une bannière s'affiche en bas de page avec deux boutons, « Refuser » et « Accepter » ;
+le choix est mémorisé dans le `localStorage` du navigateur (`fh_cookie_consent`) et peut être
+modifié à tout moment via le lien « Gérer les cookies » dans le pied de page, qui rouvre la
+bannière. En cas de refus (ou tant qu'aucun choix n'a été fait), le drapeau d'opt-out officiel de
+Google (`window['ga-disable-G-XXXXXXXXXX']`) est activé pour garantir qu'aucune donnée n'est
+envoyée à Google Analytics.
 
 Le logo apparaît dans le header et dans le footer (`assets/logo-mark.png`, dérivé du fichier
 officiel fourni par FH Héritage — monogramme FH et « Héritage » en doré, fond rendu transparent,

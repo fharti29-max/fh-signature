@@ -10,6 +10,9 @@
     phoneDisplay: '+33 7 81 21 67 31'
   };
 
+  var GA_MEASUREMENT_ID = 'G-Y0Q0S7HPCF';
+  var COOKIE_CONSENT_KEY = 'fh_cookie_consent';
+
   /* ============================================================
      En-tête : fond au scroll + menu mobile
      ============================================================ */
@@ -193,5 +196,78 @@
      ============================================================ */
   var footerYear = document.getElementById('footerYear');
   if (footerYear) footerYear.textContent = new Date().getFullYear();
+
+  /* ============================================================
+     Consentement cookies (RGPD) & Google Analytics 4
+     Les cookies statistiques ne sont activés qu'après acceptation
+     explicite du visiteur ; en l'absence d'accord (refus ou choix
+     non encore exprimé), aucun script Google Analytics n'est chargé.
+     ============================================================ */
+  var cookieBanner = document.getElementById('cookieBanner');
+  var cookieAccept = document.getElementById('cookieAccept');
+  var cookieReject = document.getElementById('cookieReject');
+  var cookieManageLink = document.getElementById('cookieManageLink');
+  var gaLoaded = false;
+
+  function loadGoogleAnalytics() {
+    if (gaLoaded) return;
+    gaLoaded = true;
+
+    window['ga-disable-' + GA_MEASUREMENT_ID] = false;
+
+    var gaScript = document.createElement('script');
+    gaScript.async = true;
+    gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_MEASUREMENT_ID;
+    document.head.appendChild(gaScript);
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { window.dataLayer.push(arguments); }
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', GA_MEASUREMENT_ID);
+  }
+
+  function disableGoogleAnalytics() {
+    window['ga-disable-' + GA_MEASUREMENT_ID] = true;
+  }
+
+  function showCookieBanner() {
+    if (cookieBanner) cookieBanner.classList.add('is-visible');
+  }
+
+  function hideCookieBanner() {
+    if (cookieBanner) cookieBanner.classList.remove('is-visible');
+  }
+
+  function setCookieConsent(choice) {
+    try { localStorage.setItem(COOKIE_CONSENT_KEY, choice); } catch (e) { /* stockage indisponible */ }
+    if (choice === 'accepted') {
+      loadGoogleAnalytics();
+    } else {
+      disableGoogleAnalytics();
+    }
+    hideCookieBanner();
+  }
+
+  var storedConsent = null;
+  try { storedConsent = localStorage.getItem(COOKIE_CONSENT_KEY); } catch (e) { /* stockage indisponible */ }
+
+  if (storedConsent === 'accepted') {
+    loadGoogleAnalytics();
+  } else if (storedConsent === 'rejected') {
+    disableGoogleAnalytics();
+  } else {
+    disableGoogleAnalytics();
+    showCookieBanner();
+  }
+
+  if (cookieAccept) cookieAccept.addEventListener('click', function () { setCookieConsent('accepted'); });
+  if (cookieReject) cookieReject.addEventListener('click', function () { setCookieConsent('rejected'); });
+  if (cookieManageLink) {
+    cookieManageLink.addEventListener('click', function (e) {
+      e.preventDefault();
+      showCookieBanner();
+    });
+  }
 
 })();

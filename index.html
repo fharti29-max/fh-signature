@@ -25,7 +25,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Allura&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="css/style.css?v=15">
+<link rel="stylesheet" href="css/style.css?v=16">
 
 <script type="application/ld+json">
 {
@@ -529,10 +529,22 @@
     <div class="footer-bottom">
       <span>&copy; <span id="footerYear"></span> FH Héritage — Tous droits réservés.</span>
       <span>Conciergerie &amp; gestion locative courte durée au Maroc</span>
+      <a href="#" id="cookieManageLink">Gérer les cookies</a>
     </div>
   </div>
 </footer>
 
-<script src="js/main.js?v=7"></script>
+<!-- ============ BANNIÈRE COOKIES (RGPD) ============ -->
+<div class="cookie-banner" id="cookieBanner" role="dialog" aria-live="polite" aria-label="Gestion des cookies">
+  <div class="cookie-banner-inner">
+    <p>Nous utilisons des cookies statistiques (Google Analytics) afin de mieux comprendre la fréquentation de notre site. Ces cookies ne sont activés qu'avec votre accord et vous pouvez modifier votre choix à tout moment depuis le pied de page.</p>
+    <div class="cookie-banner-actions">
+      <button type="button" class="btn btn-sm btn-outline-light" id="cookieReject">Refuser</button>
+      <button type="button" class="btn btn-sm btn-primary" id="cookieAccept">Accepter</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/main.js?v=8"></script>
 </body>
 </html>
